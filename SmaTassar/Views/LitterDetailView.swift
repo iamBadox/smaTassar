@@ -120,8 +120,8 @@ struct PuppyRowView: View {
                         .fontWeight(.semibold)
                 }
                 HStack {
-                    Image(systemName: puppy.sex == "Male" ? "arrow.up.circle" : "arrow.down.circle")
-                        .foregroundStyle(puppy.sex == "Male" ? .blue : .pink)
+                    Image(systemName: puppy.sex == "Male" ? "mars" : "venus")
+                        .foregroundStyle(puppy.sex == "Male" ? Color(red: 0.5, green: 0.75, blue: 1.0) : Color(red: 1.0, green: 0.6, blue: 0.75))
                     Text(puppy.sex)
                         .font(.subheadline)
                         .fontWeight(.medium)

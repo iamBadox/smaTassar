@@ -39,8 +39,8 @@ struct PuppyDetailView: View {
                         if let name = puppy.name {
                             Text(name).font(.headline)
                         }
-                        Label(puppy.sex, systemImage: puppy.sex == "Male" ? "arrow.up.circle.fill" : "arrow.down.circle.fill")
-                            .foregroundStyle(puppy.sex == "Male" ? .blue : .pink)
+                        Label(puppy.sex, systemImage: puppy.sex == "Male" ? "mars" : "venus")
+                            .foregroundStyle(puppy.sex == "Male" ? Color(red: 0.5, green: 0.75, blue: 1.0) : Color(red: 1.0, green: 0.6, blue: 0.75))
                             .font(puppy.name == nil ? .headline : .subheadline)
                         Text("Born: \(dateFormatter.string(from: puppy.birthDate))")
                             .font(.subheadline).foregroundStyle(.secondary)
