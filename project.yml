@@ -1,0 +1,21 @@
+name: SmaTassar
+options:
+  bundleIdPrefix: com.iamBadox
+  deploymentTarget:
+    iOS: "17.0"
+  defaultConfig: Debug
+configs:
+  Debug: debug
+  Release: release
+targets:
+  SmaTassar:
+    type: application
+    platform: iOS
+    sources:
+      - SmaTassar
+    settings:
+      base:
+        SWIFT_VERSION: "5.9"
+        PRODUCT_BUNDLE_IDENTIFIER: com.iamBadox.SmaTassar
+        INFOPLIST_FILE: SmaTassar/Info.plist
+        DEVELOPMENT_TEAM: ""
