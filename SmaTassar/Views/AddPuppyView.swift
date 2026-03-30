@@ -19,7 +19,7 @@ struct AddPuppyView: View {
         NavigationStack {
             Form {
                 Section("Name (optional)") {
-                    TextField("e.g. Bella", text: $name)
+                    TextField("e.g. Alva", text: $name)
                 }
                 Section("Collar Color") {
                     ColorPicker("Pick a color", selection: $collarColor)
