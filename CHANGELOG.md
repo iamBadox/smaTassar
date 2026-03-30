@@ -4,6 +4,13 @@ All notable changes to **Små Tassar** will be documented here.
 
 ---
 
+## [0.7.0] - 2026-03-30
+
+### Fixed
+- Male ♂ and female ♀ symbols now display correctly (switched from SF Symbols to Unicode characters for reliability)
+
+---
+
 ## [0.6.0] - 2026-03-30
 
 ### Changed
