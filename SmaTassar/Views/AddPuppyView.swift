@@ -7,6 +7,7 @@ struct AddPuppyView: View {
 
     let litter: Litter
 
+    @State private var name = ""
     @State private var collarColor: Color = .red
     @State private var sex = "Male"
     @State private var birthWeightText = ""
@@ -17,6 +18,9 @@ struct AddPuppyView: View {
     var body: some View {
         NavigationStack {
             Form {
+                Section("Name (optional)") {
+                    TextField("e.g. Bella", text: $name)
+                }
                 Section("Collar Color") {
                     ColorPicker("Pick a color", selection: $collarColor)
                 }
@@ -59,6 +63,7 @@ struct AddPuppyView: View {
     private func savePuppy() {
         guard let weight = Double(birthWeightText) else { return }
         let puppy = Puppy(
+            name: name.trimmingCharacters(in: .whitespaces).isEmpty ? nil : name.trimmingCharacters(in: .whitespaces),
             collarColor: collarColor.toHex(),
             sex: sex,
             birthWeight: weight,

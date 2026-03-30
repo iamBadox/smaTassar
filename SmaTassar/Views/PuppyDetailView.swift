@@ -32,6 +32,10 @@ struct PuppyDetailView: View {
                         .overlay(Circle().stroke(Color.secondary.opacity(0.3), lineWidth: 1))
 
                     VStack(alignment: .leading, spacing: 4) {
+                        if let name = puppy.name {
+                            Text(name)
+                                .font(.headline)
+                        }
                         Label(puppy.sex, systemImage: puppy.sex == "Male" ? "arrow.up.circle.fill" : "arrow.down.circle.fill")
                             .foregroundStyle(puppy.sex == "Male" ? .blue : .pink)
                             .font(.headline)
@@ -120,7 +124,7 @@ struct PuppyDetailView: View {
             }
             .padding(.vertical)
         }
-        .navigationTitle("Puppy Details")
+        .navigationTitle(puppy.name ?? "Puppy Details")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

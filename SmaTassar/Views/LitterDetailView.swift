@@ -95,6 +95,11 @@ struct PuppyRowView: View {
                 .overlay(Circle().stroke(Color.secondary.opacity(0.3), lineWidth: 1))
 
             VStack(alignment: .leading, spacing: 2) {
+                if let name = puppy.name {
+                    Text(name)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                }
                 HStack {
                     Image(systemName: puppy.sex == "Male" ? "arrow.up.circle" : "arrow.down.circle")
                         .foregroundStyle(puppy.sex == "Male" ? .blue : .pink)
