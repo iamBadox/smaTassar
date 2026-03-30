@@ -4,6 +4,14 @@ All notable changes to **Små Tassar** will be documented here.
 
 ---
 
+## [0.4.0] - 2026-03-30
+
+### Changed
+- Sex indicator now uses ♂/♀ symbols instead of arrows, in light blue and light pink
+- Puppy name placeholder changed from "Bella" to "Alva"
+
+---
+
 ## [0.3.0] - 2026-03-30
 
 ### Added
