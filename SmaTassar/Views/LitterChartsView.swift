@@ -58,11 +58,16 @@ struct LitterChartsView: View {
                                         x: .value("Date", point.date),
                                         y: .value("Weight (g)", point.weight)
                                     )
-                                    .foregroundStyle(Color(hex: group.color))
+                                    .foregroundStyle(by: .value("Puppy", group.id.uuidString))
                                     .symbol(Circle())
                                 }
                             }
                         }
+                        .chartForegroundStyleScale(
+                            domain: puppyGroups.map { $0.id.uuidString },
+                            range: puppyGroups.map { Color(hex: $0.color) }
+                        )
+                        .chartLegend(.hidden)
                         .frame(height: 320)
                         .padding()
 

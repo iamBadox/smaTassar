@@ -4,6 +4,13 @@ All notable changes to **Små Tassar** will be documented here.
 
 ---
 
+## [0.5.0] - 2026-03-30
+
+### Fixed
+- Litter chart lines now correctly use each puppy's collar color instead of all appearing red
+
+---
+
 ## [0.4.0] - 2026-03-30
 
 ### Changed
