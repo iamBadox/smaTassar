@@ -6,6 +6,7 @@ struct LitterDetailView: View {
     @Bindable var litter: Litter
     @State private var showingAddPuppy = false
     @State private var showingCharts = false
+    @State private var puppyToEdit: Puppy?
 
     var body: some View {
         Group {
@@ -19,6 +20,21 @@ struct LitterDetailView: View {
                 List(litter.puppies) { puppy in
                     NavigationLink(destination: PuppyDetailView(puppy: puppy)) {
                         PuppyRowView(puppy: puppy)
+                    }
+                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                        Button(role: .destructive) {
+                            modelContext.delete(puppy)
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                    }
+                    .swipeActions(edge: .leading) {
+                        Button {
+                            puppyToEdit = puppy
+                        } label: {
+                            Label("Edit", systemImage: "pencil")
+                        }
+                        .tint(.orange)
                     }
                 }
             }
@@ -54,6 +70,9 @@ struct LitterDetailView: View {
         }
         .sheet(isPresented: $showingAddPuppy) {
             AddPuppyView(litter: litter)
+        }
+        .sheet(item: $puppyToEdit) { puppy in
+            EditPuppyView(puppy: puppy)
         }
         .sheet(isPresented: $showingCharts) {
             LitterChartsView(litter: litter)

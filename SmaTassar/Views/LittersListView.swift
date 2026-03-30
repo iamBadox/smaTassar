@@ -5,6 +5,7 @@ struct LittersListView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Litter.dateCreated, order: .reverse) private var litters: [Litter]
     @State private var showingAddLitter = false
+    @State private var litterToEdit: Litter?
 
     var body: some View {
         NavigationStack {
@@ -19,6 +20,21 @@ struct LittersListView: View {
                     List(litters) { litter in
                         NavigationLink(destination: LitterDetailView(litter: litter)) {
                             LitterRowView(litter: litter)
+                        }
+                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            Button(role: .destructive) {
+                                modelContext.delete(litter)
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
+                        .swipeActions(edge: .leading) {
+                            Button {
+                                litterToEdit = litter
+                            } label: {
+                                Label("Edit", systemImage: "pencil")
+                            }
+                            .tint(.orange)
                         }
                     }
                 }
@@ -35,6 +51,9 @@ struct LittersListView: View {
             }
             .sheet(isPresented: $showingAddLitter) {
                 AddLitterView()
+            }
+            .sheet(item: $litterToEdit) { litter in
+                EditLitterView(litter: litter)
             }
         }
         .tint(Color(hex: "#8B6914"))
