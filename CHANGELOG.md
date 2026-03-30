@@ -4,6 +4,13 @@ All notable changes to **Små Tassar** will be documented here.
 
 ---
 
+## [0.6.0] - 2026-03-30
+
+### Changed
+- App display name is now "Små Tassar" (shown under the icon and in iOS settings)
+
+---
+
 ## [0.5.0] - 2026-03-30
 
 ### Fixed
