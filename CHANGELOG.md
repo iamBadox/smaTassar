@@ -4,6 +4,13 @@ All notable changes to **Små Tassar** will be documented here.
 
 ---
 
+## [0.10.0] - 2026-04-01
+
+### Added
+- Sex symbol (♂/♀) overlaid on the collar color circle in the Litter Charts stats section
+
+---
+
 ## [0.9.0] - 2026-04-01
 
 ### Added

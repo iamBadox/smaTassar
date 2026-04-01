@@ -139,8 +139,13 @@ struct LitterChartsView: View {
                                     HStack(spacing: 12) {
                                         Circle()
                                             .fill(Color(hex: stats.puppy.collarColor))
-                                            .frame(width: 24, height: 24)
+                                            .frame(width: 36, height: 36)
                                             .overlay(Circle().stroke(Color.secondary.opacity(0.3), lineWidth: 1))
+                                            .overlay(
+                                                Text(stats.puppy.sex == "Male" ? "♂" : "♀")
+                                                    .font(.system(size: 16, weight: .bold))
+                                                    .foregroundStyle(.white.opacity(0.9))
+                                            )
 
                                         VStack(alignment: .leading, spacing: 2) {
                                             Text(stats.displayName)
