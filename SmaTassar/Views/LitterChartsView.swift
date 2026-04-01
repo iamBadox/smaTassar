@@ -39,6 +39,13 @@ struct LitterChartsView: View {
         litter.puppies.map { (id: $0.id, color: $0.collarColor) }
     }
 
+    private var xDomain: ClosedRange<Date> {
+        let allDates = chartData.map { $0.date }
+        let earliest = allDates.min() ?? Date()
+        let latest = allDates.max() ?? Date()
+        return earliest...latest
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -68,6 +75,7 @@ struct LitterChartsView: View {
                             range: puppyGroups.map { Color(hex: $0.color) }
                         )
                         .chartLegend(.hidden)
+                        .chartXScale(domain: xDomain)
                         .frame(height: 320)
                         .padding()
 

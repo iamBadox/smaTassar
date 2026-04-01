@@ -4,6 +4,13 @@ All notable changes to **Små Tassar** will be documented here.
 
 ---
 
+## [0.8.0] - 2026-04-01
+
+### Fixed
+- Litter chart X axis now ends at the last recorded data point, not today's date
+
+---
+
 ## [0.7.0] - 2026-03-30
 
 ### Fixed
