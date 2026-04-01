@@ -14,6 +14,27 @@ struct LitterChartsView: View {
         let weight: Double
     }
 
+    struct PuppyStats {
+        let puppy: Puppy
+        let birthWeight: Double
+        let latestWeight: Double
+        let previousWeight: Double?
+        let latestDate: Date
+
+        var sinceBirthPercent: Double {
+            (latestWeight - birthWeight) / birthWeight * 100
+        }
+
+        var lastIntervalPercent: Double? {
+            guard let prev = previousWeight else { return nil }
+            return (latestWeight - prev) / prev * 100
+        }
+
+        var displayName: String {
+            puppy.name ?? "\(puppy.sex == "Male" ? "♂" : "♀")"
+        }
+    }
+
     private var chartData: [ChartPoint] {
         var points: [ChartPoint] = []
         for puppy in litter.puppies {
@@ -44,6 +65,34 @@ struct LitterChartsView: View {
         let earliest = allDates.min() ?? Date()
         let latest = allDates.max() ?? Date()
         return earliest...latest
+    }
+
+    private var puppyStats: [PuppyStats] {
+        litter.puppies.compactMap { puppy in
+            let sorted = puppy.weightEntries.sorted { $0.date < $1.date }
+            guard let latest = sorted.last else { return nil }
+            let previous = sorted.dropLast().last
+            return PuppyStats(
+                puppy: puppy,
+                birthWeight: puppy.birthWeight,
+                latestWeight: latest.weight,
+                previousWeight: previous?.weight,
+                latestDate: latest.date
+            )
+        }
+    }
+
+    private let percentFormatter: NumberFormatter = {
+        let f = NumberFormatter()
+        f.numberStyle = .decimal
+        f.maximumFractionDigits = 1
+        f.minimumFractionDigits = 1
+        f.positivePrefix = "+"
+        return f
+    }()
+
+    private func formatPercent(_ value: Double) -> String {
+        percentFormatter.string(from: NSNumber(value: value)) ?? "\(value)%"
     }
 
     var body: some View {
@@ -79,20 +128,65 @@ struct LitterChartsView: View {
                         .frame(height: 320)
                         .padding()
 
-                        // Legend
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("Puppies")
-                                .font(.headline)
-                                .padding(.horizontal)
-                            LazyVGrid(columns: [GridItem(.adaptive(minimum: 40))], alignment: .leading) {
-                                ForEach(puppyGroups, id: \.id) { group in
-                                    Circle()
-                                        .fill(Color(hex: group.color))
-                                        .frame(width: 24, height: 24)
-                                        .overlay(Circle().stroke(Color.secondary.opacity(0.3), lineWidth: 1))
+                        // Weight gain stats
+                        if !puppyStats.isEmpty {
+                            VStack(alignment: .leading, spacing: 10) {
+                                Text("Weight Gain")
+                                    .font(.headline)
+                                    .padding(.horizontal)
+
+                                ForEach(puppyStats, id: \.puppy.id) { stats in
+                                    HStack(spacing: 12) {
+                                        Circle()
+                                            .fill(Color(hex: stats.puppy.collarColor))
+                                            .frame(width: 24, height: 24)
+                                            .overlay(Circle().stroke(Color.secondary.opacity(0.3), lineWidth: 1))
+
+                                        VStack(alignment: .leading, spacing: 2) {
+                                            Text(stats.displayName)
+                                                .font(.subheadline)
+                                                .fontWeight(.medium)
+                                            Text("\(Int(stats.birthWeight))g → \(Int(stats.latestWeight))g")
+                                                .font(.caption)
+                                                .foregroundStyle(.secondary)
+                                        }
+
+                                        Spacer()
+
+                                        VStack(alignment: .trailing, spacing: 4) {
+                                            HStack(spacing: 4) {
+                                                Image(systemName: "arrow.up.right")
+                                                    .font(.caption2)
+                                                Text("Since birth")
+                                                    .font(.caption)
+                                            }
+                                            .foregroundStyle(.secondary)
+                                            Text("\(formatPercent(stats.sinceBirthPercent))%")
+                                                .font(.subheadline)
+                                                .fontWeight(.semibold)
+                                                .foregroundStyle(stats.sinceBirthPercent >= 0 ? .green : .red)
+
+                                            if let interval = stats.lastIntervalPercent {
+                                                HStack(spacing: 4) {
+                                                    Image(systemName: "clock")
+                                                        .font(.caption2)
+                                                    Text("Last update")
+                                                        .font(.caption)
+                                                }
+                                                .foregroundStyle(.secondary)
+                                                Text("\(formatPercent(interval))%")
+                                                    .font(.subheadline)
+                                                    .fontWeight(.semibold)
+                                                    .foregroundStyle(interval >= 0 ? .green : .red)
+                                            }
+                                        }
+                                    }
+                                    .padding()
+                                    .background(Color(.secondarySystemBackground))
+                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                                    .padding(.horizontal)
                                 }
                             }
-                            .padding(.horizontal)
                         }
                     }
                 }

@@ -4,6 +4,16 @@ All notable changes to **Små Tassar** will be documented here.
 
 ---
 
+## [0.9.0] - 2026-04-01
+
+### Added
+- Weight gain stats section in Litter Charts, showing per puppy:
+  - Total growth since birth (percentage)
+  - Growth between the two most recent entries (percentage)
+  - Values shown in green (gain) or red (loss) for quick visual scanning
+
+---
+
 ## [0.8.0] - 2026-04-01
 
 ### Fixed
