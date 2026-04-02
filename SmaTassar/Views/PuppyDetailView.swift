@@ -4,6 +4,7 @@ import Charts
 
 struct PuppyDetailView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(LanguageManager.self) private var lang
     @Bindable var puppy: Puppy
     @State private var showingAddWeight = false
     @State private var entryToEdit: WeightEntry?
@@ -43,13 +44,13 @@ struct PuppyDetailView: View {
                             Text(puppy.sex == "Male" ? "♂" : "♀")
                                 .foregroundStyle(puppy.sex == "Male" ? Color(red: 0.5, green: 0.75, blue: 1.0) : Color(red: 1.0, green: 0.6, blue: 0.75))
                                 .fontWeight(.bold)
-                            Text(puppy.sex)
+                            Text(puppy.sex == "Male" ? lang.t("male") : lang.t("female"))
                                 .foregroundStyle(puppy.sex == "Male" ? Color(red: 0.5, green: 0.75, blue: 1.0) : Color(red: 1.0, green: 0.6, blue: 0.75))
                         }
                         .font(puppy.name == nil ? .headline : .subheadline)
-                        Text("Born: \(dateFormatter.string(from: puppy.birthDate))")
+                        Text("\(lang.t("born")) \(dateFormatter.string(from: puppy.birthDate))")
                             .font(.subheadline).foregroundStyle(.secondary)
-                        Text("Birth weight: \(Int(puppy.birthWeight))g")
+                        Text("\(lang.t("birth_weight_label")) \(Int(puppy.birthWeight))g")
                             .font(.subheadline).foregroundStyle(.secondary)
                     }
                 }
@@ -58,7 +59,7 @@ struct PuppyDetailView: View {
 
             // Growth chart
             if chartData.count > 1 {
-                Section("Weight Over Time") {
+                Section(lang.t("weight_over_time")) {
                     Chart(chartData, id: \.date) { point in
                         LineMark(
                             x: .value("Date", point.date),
@@ -77,7 +78,7 @@ struct PuppyDetailView: View {
             }
 
             // Weight entries
-            Section("Weight Entries") {
+            Section(lang.t("weight_entries")) {
                 // Birth weight row (not editable/deletable)
                 HStack {
                     Text(dateFormatter.string(from: puppy.birthDate))
@@ -85,7 +86,7 @@ struct PuppyDetailView: View {
                     Spacer()
                     Text("\(Int(puppy.birthWeight))g")
                         .font(.subheadline).fontWeight(.medium)
-                    Text("(birth)")
+                    Text(lang.t("birth_tag"))
                         .font(.caption).foregroundStyle(.secondary)
                 }
 
@@ -101,27 +102,27 @@ struct PuppyDetailView: View {
                         Button(role: .destructive) {
                             modelContext.delete(entry)
                         } label: {
-                            Label("Delete", systemImage: "trash")
+                            Label(lang.t("delete"), systemImage: "trash")
                         }
                     }
                     .swipeActions(edge: .leading) {
                         Button {
                             entryToEdit = entry
                         } label: {
-                            Label("Edit", systemImage: "pencil")
+                            Label(lang.t("edit"), systemImage: "pencil")
                         }
                         .tint(.orange)
                     }
                 }
 
                 if puppy.weightEntries.isEmpty {
-                    Text("No weight updates yet.")
+                    Text(lang.t("no_weight_updates"))
                         .foregroundStyle(.secondary)
                         .font(.subheadline)
                 }
             }
         }
-        .navigationTitle(puppy.name ?? "Puppy Details")
+        .navigationTitle(puppy.name ?? lang.t("puppy_details"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

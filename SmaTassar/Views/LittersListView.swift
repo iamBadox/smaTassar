@@ -3,6 +3,7 @@ import SwiftData
 
 struct LittersListView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(LanguageManager.self) private var lang
     @Query(sort: \Litter.dateCreated, order: .reverse) private var litters: [Litter]
     @State private var showingAddLitter = false
     @State private var litterToEdit: Litter?
@@ -12,9 +13,9 @@ struct LittersListView: View {
             Group {
                 if litters.isEmpty {
                     ContentUnavailableView(
-                        "No Litters Yet",
+                        lang.t("no_litters_title"),
                         systemImage: "pawprint.fill",
-                        description: Text("Tap + to add your first litter.")
+                        description: Text(lang.t("no_litters_desc"))
                     )
                 } else {
                     List(litters) { litter in
@@ -25,21 +26,21 @@ struct LittersListView: View {
                             Button(role: .destructive) {
                                 modelContext.delete(litter)
                             } label: {
-                                Label("Delete", systemImage: "trash")
+                                Label(lang.t("delete"), systemImage: "trash")
                             }
                         }
                         .swipeActions(edge: .leading) {
                             Button {
                                 litterToEdit = litter
                             } label: {
-                                Label("Edit", systemImage: "pencil")
+                                Label(lang.t("edit"), systemImage: "pencil")
                             }
                             .tint(.orange)
                         }
                     }
                 }
             }
-            .navigationTitle("Små Tassar")
+            .navigationTitle(lang.t("app_title"))
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -56,11 +57,11 @@ struct LittersListView: View {
                 EditLitterView(litter: litter)
             }
         }
-        .tint(Color(hex: "#8B6914"))
     }
 }
 
 struct LitterRowView: View {
+    @Environment(LanguageManager.self) private var lang
     let litter: Litter
 
     var body: some View {
@@ -68,13 +69,13 @@ struct LitterRowView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(litter.name)
                     .font(.headline)
-                Text("\(litter.puppies.count) \(litter.puppies.count == 1 ? "puppy" : "puppies")")
+                Text("\(litter.puppies.count) \(litter.puppies.count == 1 ? lang.t("puppy_singular") : lang.t("puppy_plural"))")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
             Spacer()
             if litter.isComplete {
-                Label("Complete", systemImage: "checkmark.seal.fill")
+                Label(lang.t("complete"), systemImage: "checkmark.seal.fill")
                     .font(.caption)
                     .foregroundStyle(.green)
                     .labelStyle(.iconOnly)

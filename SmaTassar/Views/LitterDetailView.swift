@@ -3,6 +3,7 @@ import SwiftData
 
 struct LitterDetailView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(LanguageManager.self) private var lang
     @Bindable var litter: Litter
     @State private var showingAddPuppy = false
     @State private var showingCharts = false
@@ -12,9 +13,9 @@ struct LitterDetailView: View {
         Group {
             if litter.puppies.isEmpty {
                 ContentUnavailableView(
-                    "No Puppies Yet",
+                    lang.t("no_puppies_title"),
                     systemImage: "pawprint",
-                    description: Text("Tap \"Add Puppy\" to get started.")
+                    description: Text(lang.t("no_puppies_desc"))
                 )
             } else {
                 List(litter.puppies) { puppy in
@@ -25,14 +26,14 @@ struct LitterDetailView: View {
                         Button(role: .destructive) {
                             modelContext.delete(puppy)
                         } label: {
-                            Label("Delete", systemImage: "trash")
+                            Label(lang.t("delete"), systemImage: "trash")
                         }
                     }
                     .swipeActions(edge: .leading) {
                         Button {
                             puppyToEdit = puppy
                         } label: {
-                            Label("Edit", systemImage: "pencil")
+                            Label(lang.t("edit"), systemImage: "pencil")
                         }
                         .tint(.orange)
                     }
@@ -46,7 +47,7 @@ struct LitterDetailView: View {
                     Button {
                         showingAddPuppy = true
                     } label: {
-                        Label("Add Puppy", systemImage: "plus")
+                        Label(lang.t("add_puppy"), systemImage: "plus")
                     }
                     Button {
                         withAnimation {
@@ -54,14 +55,14 @@ struct LitterDetailView: View {
                         }
                     } label: {
                         Label(
-                            litter.isComplete ? "Reopen Litter" : "Mark as Complete",
+                            litter.isComplete ? lang.t("reopen_litter") : lang.t("mark_complete"),
                             systemImage: litter.isComplete ? "arrow.uturn.backward" : "checkmark.seal"
                         )
                     }
                     Button {
                         showingCharts = true
                     } label: {
-                        Label("View Charts", systemImage: "chart.line.uptrend.xyaxis")
+                        Label(lang.t("view_charts"), systemImage: "chart.line.uptrend.xyaxis")
                     }
                 } label: {
                     Image(systemName: "ellipsis.circle")
@@ -82,7 +83,7 @@ struct LitterDetailView: View {
                 Button {
                     showingCharts = true
                 } label: {
-                    Label("View Litter Charts", systemImage: "chart.line.uptrend.xyaxis")
+                    Label(lang.t("view_litter_charts"), systemImage: "chart.line.uptrend.xyaxis")
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color(hex: "#8B6914"))
@@ -97,6 +98,7 @@ struct LitterDetailView: View {
 }
 
 struct PuppyRowView: View {
+    @Environment(LanguageManager.self) private var lang
     let puppy: Puppy
 
     private var dateFormatter: DateFormatter {
@@ -123,14 +125,14 @@ struct PuppyRowView: View {
                     Text(puppy.sex == "Male" ? "♂" : "♀")
                         .foregroundStyle(puppy.sex == "Male" ? Color(red: 0.5, green: 0.75, blue: 1.0) : Color(red: 1.0, green: 0.6, blue: 0.75))
                         .fontWeight(.bold)
-                    Text(puppy.sex)
+                    Text(puppy.sex == "Male" ? lang.t("male") : lang.t("female"))
                         .font(.subheadline)
                         .fontWeight(.medium)
                 }
-                Text("Born: \(dateFormatter.string(from: puppy.birthDate))")
+                Text("\(lang.t("born")) \(dateFormatter.string(from: puppy.birthDate))")
                     .font(.caption)
                     .foregroundStyle(.secondary)
-                Text("Birth weight: \(Int(puppy.birthWeight))g")
+                Text("\(lang.t("birth_weight_label")) \(Int(puppy.birthWeight))g")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }

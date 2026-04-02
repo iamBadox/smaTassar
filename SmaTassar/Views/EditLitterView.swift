@@ -3,6 +3,7 @@ import SwiftData
 
 struct EditLitterView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(LanguageManager.self) private var lang
     @Bindable var litter: Litter
 
     @State private var name: String
@@ -15,18 +16,18 @@ struct EditLitterView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Litter Name") {
-                    TextField("e.g. Litter A", text: $name)
+                Section(lang.t("litter_name")) {
+                    TextField(lang.t("litter_name_placeholder"), text: $name)
                 }
             }
-            .navigationTitle("Edit Litter")
+            .navigationTitle(lang.t("edit_litter"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button(lang.t("cancel")) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
+                    Button(lang.t("save")) {
                         litter.name = name.trimmingCharacters(in: .whitespaces)
                         dismiss()
                     }

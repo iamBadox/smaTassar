@@ -3,6 +3,7 @@ import SwiftData
 
 struct EditPuppyView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(LanguageManager.self) private var lang
     @Bindable var puppy: Puppy
 
     @State private var name: String
@@ -10,8 +11,6 @@ struct EditPuppyView: View {
     @State private var sex: String
     @State private var birthWeightText: String
     @State private var birthDate: Date
-
-    let sexOptions = ["Male", "Female"]
 
     init(puppy: Puppy) {
         self.puppy = puppy
@@ -25,35 +24,36 @@ struct EditPuppyView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Name (optional)") {
+                Section(lang.t("name_optional")) {
                     TextField("e.g. Alva", text: $name)
                 }
-                Section("Collar Color") {
-                    ColorPicker("Pick a color", selection: $collarColor)
+                Section(lang.t("collar_color")) {
+                    ColorPicker(lang.t("pick_a_color"), selection: $collarColor)
                 }
-                Section("Sex") {
-                    Picker("Sex", selection: $sex) {
-                        ForEach(sexOptions, id: \.self) { Text($0) }
+                Section(lang.t("sex")) {
+                    Picker(lang.t("sex"), selection: $sex) {
+                        Text(lang.t("male")).tag("Male")
+                        Text(lang.t("female")).tag("Female")
                     }
                     .pickerStyle(.segmented)
                 }
-                Section("Birth Weight (grams)") {
-                    TextField("e.g. 450", text: $birthWeightText)
+                Section(lang.t("birth_weight_grams")) {
+                    TextField(lang.t("birth_weight_placeholder"), text: $birthWeightText)
                         .keyboardType(.decimalPad)
                 }
-                Section("Birth Date & Time") {
+                Section(lang.t("birth_date_time")) {
                     DatePicker("Birth Date", selection: $birthDate, displayedComponents: [.date, .hourAndMinute])
                         .labelsHidden()
                 }
             }
-            .navigationTitle("Edit Puppy")
+            .navigationTitle(lang.t("edit_puppy_title"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button(lang.t("cancel")) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") { savePuppy() }
+                    Button(lang.t("save")) { savePuppy() }
                     .disabled(!isValid)
                 }
             }

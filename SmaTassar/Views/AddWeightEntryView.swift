@@ -4,6 +4,7 @@ import SwiftData
 struct AddWeightEntryView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @Environment(LanguageManager.self) private var lang
 
     let puppy: Puppy
 
@@ -13,23 +14,23 @@ struct AddWeightEntryView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Date & Time") {
+                Section(lang.t("date_time")) {
                     DatePicker("Date", selection: $date, displayedComponents: [.date, .hourAndMinute])
                         .labelsHidden()
                 }
-                Section("Weight (grams)") {
-                    TextField("e.g. 520", text: $weightText)
+                Section(lang.t("weight_grams")) {
+                    TextField(lang.t("weight_placeholder"), text: $weightText)
                         .keyboardType(.decimalPad)
                 }
             }
-            .navigationTitle("Add Weight")
+            .navigationTitle(lang.t("add_weight"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button(lang.t("cancel")) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
+                    Button(lang.t("save")) {
                         saveEntry()
                     }
                     .disabled(!isValid)

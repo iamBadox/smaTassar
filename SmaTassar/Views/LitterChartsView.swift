@@ -4,6 +4,7 @@ import Charts
 
 struct LitterChartsView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(LanguageManager.self) private var lang
     let litter: Litter
 
     struct ChartPoint: Identifiable {
@@ -101,9 +102,9 @@ struct LitterChartsView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     if litter.puppies.isEmpty {
                         ContentUnavailableView(
-                            "No Puppies",
+                            lang.t("no_puppies_charts_title"),
                             systemImage: "pawprint",
-                            description: Text("Add puppies to see charts.")
+                            description: Text(lang.t("no_puppies_charts_desc"))
                         )
                     } else {
                         Chart {
@@ -131,7 +132,7 @@ struct LitterChartsView: View {
                         // Weight gain stats
                         if !puppyStats.isEmpty {
                             VStack(alignment: .leading, spacing: 10) {
-                                Text("Weight Gain")
+                                Text(lang.t("weight_gain"))
                                     .font(.headline)
                                     .padding(.horizontal)
 
@@ -162,7 +163,7 @@ struct LitterChartsView: View {
                                             HStack(spacing: 4) {
                                                 Image(systemName: "arrow.up.right")
                                                     .font(.caption2)
-                                                Text("Since birth")
+                                                Text(lang.t("since_birth"))
                                                     .font(.caption)
                                             }
                                             .foregroundStyle(.secondary)
@@ -175,7 +176,7 @@ struct LitterChartsView: View {
                                                 HStack(spacing: 4) {
                                                     Image(systemName: "clock")
                                                         .font(.caption2)
-                                                    Text("Last update")
+                                                    Text(lang.t("last_update"))
                                                         .font(.caption)
                                                 }
                                                 .foregroundStyle(.secondary)
@@ -197,11 +198,11 @@ struct LitterChartsView: View {
                 }
                 .padding(.vertical)
             }
-            .navigationTitle("Litter Charts")
+            .navigationTitle(lang.t("litter_charts"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { dismiss() }
+                    Button(lang.t("done")) { dismiss() }
                 }
             }
         }

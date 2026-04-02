@@ -4,23 +4,24 @@ import SwiftData
 struct AddLitterView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @Environment(LanguageManager.self) private var lang
     @State private var name = ""
 
     var body: some View {
         NavigationStack {
             Form {
-                Section("Litter Name") {
-                    TextField("e.g. Litter A", text: $name)
+                Section(lang.t("litter_name")) {
+                    TextField(lang.t("litter_name_placeholder"), text: $name)
                 }
             }
-            .navigationTitle("New Litter")
+            .navigationTitle(lang.t("new_litter"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button(lang.t("cancel")) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
+                    Button(lang.t("save")) {
                         saveLitter()
                     }
                     .disabled(name.trimmingCharacters(in: .whitespaces).isEmpty)

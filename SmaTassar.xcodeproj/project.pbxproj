@@ -12,6 +12,7 @@
 		0DF5A29E76A5C4548DB2E516 /* AddLitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFFA0BCDDC98CA214027841 /* AddLitterView.swift */; };
 		14693B5A50627742949DC4A3 /* Litter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6B98E9D5A8A0C0A78BB760 /* Litter.swift */; };
 		14B598924C526E00A90071AC /* Puppy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28454777FD4AC8AD69D4C0F /* Puppy.swift */; };
+		285AB2378E8E41CED505A013 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA329185D7479A6C76E37A54 /* SettingsView.swift */; };
 		47F814E41E5A2BC2EDAF41E7 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2602FCB849709F1EF740A35F /* ColorExtension.swift */; };
 		6001F45A0401760DCCCE9042 /* AddWeightEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F379CF51771EB60C278BA6BB /* AddWeightEntryView.swift */; };
 		61CD8BDB558DBF6FEAE41990 /* EditPuppyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBCAB356DCD2D81B8B2C64F /* EditPuppyView.swift */; };
@@ -22,22 +23,29 @@
 		A33722B45BB095E3998079BE /* EditWeightEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A67ACD034B33C2A41A7C8A1 /* EditWeightEntryView.swift */; };
 		ACA1331582D070D9D446E5F1 /* LitterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C23ACA44511357090A84B1 /* LitterDetailView.swift */; };
 		B97C922D5D2D002CEC84801A /* LitterChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4279AAEA290F24251306C54 /* LitterChartsView.swift */; };
+		BA0D13BCFE158B50F8E10DDD /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F734BDFA9CE2907DC0D06D9 /* Strings.swift */; };
+		C8B8752A06418311173341F2 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106E06F8E2F3BD92A858C740 /* LanguageManager.swift */; };
+		DE4A01761D97F162EFB04794 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5A5931A25B0C1EEAE1DFD9 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		01E55D05CDCA98C97037B4B6 /* WeightEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightEntry.swift; sourceTree = "<group>"; };
 		0F2FD2D7F11BF1730CF10E79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		106E06F8E2F3BD92A858C740 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		1A67ACD034B33C2A41A7C8A1 /* EditWeightEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWeightEntryView.swift; sourceTree = "<group>"; };
 		2602FCB849709F1EF740A35F /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		2D004D23C002D2A67C37D4AC /* SmaTassarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmaTassarApp.swift; sourceTree = "<group>"; };
 		371C2556341F3951B856C6DC /* EditLitterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLitterView.swift; sourceTree = "<group>"; };
 		38C23ACA44511357090A84B1 /* LitterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LitterDetailView.swift; sourceTree = "<group>"; };
 		3A581E910156435DD3F0F47A /* SmaTassar.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SmaTassar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F734BDFA9CE2907DC0D06D9 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		4DBCAB356DCD2D81B8B2C64F /* EditPuppyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPuppyView.swift; sourceTree = "<group>"; };
+		5A5A5931A25B0C1EEAE1DFD9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		944C6EF9AD937253C168684A /* PuppyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuppyDetailView.swift; sourceTree = "<group>"; };
 		ABA9CF003E1E9C067B6C88DA /* AddPuppyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPuppyView.swift; sourceTree = "<group>"; };
 		BAFFA0BCDDC98CA214027841 /* AddLitterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLitterView.swift; sourceTree = "<group>"; };
 		D4B101D0A45BD872596909FB /* LittersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LittersListView.swift; sourceTree = "<group>"; };
+		DA329185D7479A6C76E37A54 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		DD6B98E9D5A8A0C0A78BB760 /* Litter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Litter.swift; sourceTree = "<group>"; };
 		E4279AAEA290F24251306C54 /* LitterChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LitterChartsView.swift; sourceTree = "<group>"; };
 		F28454777FD4AC8AD69D4C0F /* Puppy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Puppy.swift; sourceTree = "<group>"; };
@@ -50,10 +58,20 @@
 			children = (
 				0F2FD2D7F11BF1730CF10E79 /* Info.plist */,
 				2D004D23C002D2A67C37D4AC /* SmaTassarApp.swift */,
+				03D1D304092BFA53D52AC344 /* Localization */,
 				4E0058055ACC06E5BC271917 /* Models */,
 				8DCCF492A38ED13960C36B10 /* Views */,
 			);
 			path = SmaTassar;
+			sourceTree = "<group>";
+		};
+		03D1D304092BFA53D52AC344 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				106E06F8E2F3BD92A858C740 /* LanguageManager.swift */,
+				3F734BDFA9CE2907DC0D06D9 /* Strings.swift */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 		4E0058055ACC06E5BC271917 /* Models */ = {
@@ -81,6 +99,7 @@
 				ABA9CF003E1E9C067B6C88DA /* AddPuppyView.swift */,
 				F379CF51771EB60C278BA6BB /* AddWeightEntryView.swift */,
 				2602FCB849709F1EF740A35F /* ColorExtension.swift */,
+				5A5A5931A25B0C1EEAE1DFD9 /* ContentView.swift */,
 				371C2556341F3951B856C6DC /* EditLitterView.swift */,
 				4DBCAB356DCD2D81B8B2C64F /* EditPuppyView.swift */,
 				1A67ACD034B33C2A41A7C8A1 /* EditWeightEntryView.swift */,
@@ -88,6 +107,7 @@
 				38C23ACA44511357090A84B1 /* LitterDetailView.swift */,
 				D4B101D0A45BD872596909FB /* LittersListView.swift */,
 				944C6EF9AD937253C168684A /* PuppyDetailView.swift */,
+				DA329185D7479A6C76E37A54 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -162,16 +182,20 @@
 				9829B1D212F83A5C0340F0FA /* AddPuppyView.swift in Sources */,
 				6001F45A0401760DCCCE9042 /* AddWeightEntryView.swift in Sources */,
 				47F814E41E5A2BC2EDAF41E7 /* ColorExtension.swift in Sources */,
+				DE4A01761D97F162EFB04794 /* ContentView.swift in Sources */,
 				0AFAC12D48E629BE18546142 /* EditLitterView.swift in Sources */,
 				61CD8BDB558DBF6FEAE41990 /* EditPuppyView.swift in Sources */,
 				A33722B45BB095E3998079BE /* EditWeightEntryView.swift in Sources */,
+				C8B8752A06418311173341F2 /* LanguageManager.swift in Sources */,
 				14693B5A50627742949DC4A3 /* Litter.swift in Sources */,
 				B97C922D5D2D002CEC84801A /* LitterChartsView.swift in Sources */,
 				ACA1331582D070D9D446E5F1 /* LitterDetailView.swift in Sources */,
 				79DE058FFDEBEEFD67DF90A6 /* LittersListView.swift in Sources */,
 				14B598924C526E00A90071AC /* Puppy.swift in Sources */,
 				94847A682A374700C788D6EE /* PuppyDetailView.swift in Sources */,
+				285AB2378E8E41CED505A013 /* SettingsView.swift in Sources */,
 				04C9F6079D7AF4EFFE05E213 /* SmaTassarApp.swift in Sources */,
+				BA0D13BCFE158B50F8E10DDD /* Strings.swift in Sources */,
 				7B9F1CD9BDF18756E2A6E4E4 /* WeightEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -3,6 +3,7 @@ import SwiftData
 
 struct EditWeightEntryView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(LanguageManager.self) private var lang
     @Bindable var entry: WeightEntry
 
     @State private var date: Date
@@ -17,23 +18,23 @@ struct EditWeightEntryView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Date & Time") {
+                Section(lang.t("date_time")) {
                     DatePicker("Date", selection: $date, displayedComponents: [.date, .hourAndMinute])
                         .labelsHidden()
                 }
-                Section("Weight (grams)") {
-                    TextField("e.g. 520", text: $weightText)
+                Section(lang.t("weight_grams")) {
+                    TextField(lang.t("weight_placeholder"), text: $weightText)
                         .keyboardType(.decimalPad)
                 }
             }
-            .navigationTitle("Edit Weight")
+            .navigationTitle(lang.t("edit_weight"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button(lang.t("cancel")) { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
+                    Button(lang.t("save")) {
                         guard let weight = Double(weightText), weight > 0 else { return }
                         entry.weight = weight
                         entry.date = date

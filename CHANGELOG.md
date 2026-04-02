@@ -4,6 +4,16 @@ All notable changes to **Små Tassar** will be documented here.
 
 ---
 
+## [0.11.0] - 2026-04-02
+
+### Added
+- Settings tab with English / Svenska language switcher
+- Full Swedish translation across all screens and forms
+- Language choice is saved and remembered between app launches
+- "Male/Female" displayed as "Hane/Tik" in Swedish (stored values unchanged)
+
+---
+
 ## [0.10.0] - 2026-04-01
 
 ### Added
